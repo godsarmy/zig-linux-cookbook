@@ -1,6 +1,5 @@
 const std = @import("std");
 
-const mem = std.mem;
 const stdout = std.io.getStdOut().writer();
 const linux = std.os.linux;
 
