@@ -5,6 +5,7 @@ Show usage linux system call in zig namespace
 ## Examples
 getcwd.zig
 lstat.zig
+open_errno.zig
 
 ## Usage
  * Build Only
