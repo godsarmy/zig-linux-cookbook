@@ -3,9 +3,10 @@ Show usage linux system call in zig namespace
 [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
 
 ## Examples
-getcwd.zig
-lstat.zig
-open_errno.zig
+| File           | Related Call |
+| getcwd.zig     | [getcwd](https://ziglang.org/documentation/master/std/#std.os.linux.getcwd) |
+| lstat.zig      | [lstat](https://ziglang.org/documentation/master/std/#std.os.linux.lstat) |
+| open_errno.zig | [open](https://ziglang.org/documentation/master/std/#std.os.linux.open) |
 
 ## Usage
  * Build Only
