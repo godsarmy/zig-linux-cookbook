@@ -10,7 +10,7 @@ fn lstat_type(path: [:0]const u8) !void {
     const rc = linux.lstat(path, &statbuf);
 
     if (rc != 0) {
-        try stdout.print("Error to call lstat on {s}: {d}\n", .{path, rc});
+        try stdout.print("Error to call lstat on {s}: {d}\n", .{ path, rc });
         return;
     }
 

@@ -1,0 +1,26 @@
+name: zig
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: mlugg/setup-zig@v1
+        name: Set up zig
+        with:
+          version: 0.13.0
+
+      - name: Build
+        run: |
+          zig build
+      - name: Test
+        run: |
+          zig fmt --check src/*
