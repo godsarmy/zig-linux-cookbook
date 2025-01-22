@@ -10,8 +10,8 @@ pub fn main() !void {
     const arena = arena_allocator.allocator();
 
     const cmd = "/usr/bin/ls";
-    const argv = [_][]const u8{ "ls", "-l", "-a"};
-    const envp = [_][]const u8{ "TERM=xterm"};
+    const argv = [_][]const u8{ "ls", "-l", "-a" };
+    const envp = [_][]const u8{"TERM=xterm"};
 
     const argv_buf = try arena.allocSentinel(?[*:0]const u8, argv.len, null);
     for (argv, 0..) |arg, i| argv_buf[i] = (try arena.dupeZ(u8, arg)).ptr;
