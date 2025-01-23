@@ -1,6 +1,6 @@
 ## Overview
-Show usage linux system call in zig namespace
-[std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
+Examples of zig code to demonstrate how to use typical linux system lib in zig
+namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
 
 ## Examples
 | File                                       | Related Call |
@@ -26,3 +26,8 @@ zig build
 ```sh
 zig build run-all
 ```
+
+## Other awesome zig learning materials
+ * [zig-cookbook](https://github.com/zigcc/zig-cookbook)
+ * [awesome-zig](https://github.com/zigcc/awesome-zig)
+ * [zig-learning](https://github.com/zouyee/zig-learning)
