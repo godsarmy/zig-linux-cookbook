@@ -18,10 +18,11 @@ namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.li
 | [pipe.zig](src/pipe.zig)                   | [pipe](https://ziglang.org/documentation/master/std/#std.os.linux.pipe) [read](https://ziglang.org/documentation/master/std/#std.os.linux.read) [write](https://ziglang.org/documentation/master/std/#std.os.linux.write) |
 | [symlink.zig](src/symlink.zig)             | [symlink](https://ziglang.org/documentation/master/std/#std.os.linux.symlink) [readlink](https://ziglang.org/documentation/master/std/#std.os.linux.readlink) |
 | [ushare.zig](src/ushare.zig)               | [getuid](https://ziglang.org/documentation/master/std/#std.os.linux.getuid) [unshare](https://ziglang.org/documentation/master/std/#std.os.linux.unshare) |
+| [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/master/std/#std.os.linux.uname) |
 
 ## Usage
  * Install [zig >= 0.13](https://ziglang.org/download/)
- * Build Only
+ * Build Only. You will have binaries in `zig-out/bin`.
 ```sh
 zig build
 ```
