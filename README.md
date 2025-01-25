@@ -1,6 +1,6 @@
 ## Overview
-Examples of zig code to demonstrate how to use typical linux system lib in zig
-namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
+Examples of [zig](https://ziglang.org/) code to demonstrate how to use typical
+linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
 
 ## Examples
 | File                                       | Related Call |
@@ -22,10 +22,13 @@ namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.li
 
 ## Usage
  * Install [zig >= 0.13](https://ziglang.org/download/)
- * Build Only. You will have binaries in `zig-out/bin`.
+
+ * Build Only.
 ```sh
 zig build
 ```
+You will have binaries in `zig-out/bin`.
+
  * Build & Run all
 ```sh
 zig build run-all
