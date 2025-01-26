@@ -34,7 +34,7 @@ pub fn main() !void {
     }
 
     // read dir in zig native way, much easier
-    var tmp_dir = try fs.openDirAbsolute("/tmp", .{.iterate = true});
+    var tmp_dir = try fs.openDirAbsolute("/tmp", .{ .iterate = true });
     defer tmp_dir.close();
 
     var iterate = tmp_dir.iterate();
