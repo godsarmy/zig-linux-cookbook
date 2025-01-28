@@ -15,8 +15,9 @@ linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentati
 | [getdents64](src/getdents64.zig)           | [getdents64](https://ziglang.org/documentation/master/std/#std.os.linux.getdents64) |
 | [getgroups.zig](src/getgroups.zig)         | [getgroups](https://ziglang.org/documentation/master/std/#std.os.linux.getgroups) |
 | [getrandom.zig](src/getrandom.zig)         | [getrandom](https://ziglang.org/documentation/master/std/#std.os.linux.getrandom) |
-| [lstat.zig](src/lstat.zig)                 | [lstat](https://ziglang.org/documentation/master/std/#std.os.linux.lstat) |
 | [kill.zig](src/kill.zig)                   | [kill](https://ziglang.org/documentation/master/std/#std.os.linux.kill) |
+| [lstat.zig](src/lstat.zig)                 | [lstat](https://ziglang.org/documentation/master/std/#std.os.linux.lstat) |
+| [mmap.zig](src/mmap.zig)                   | [mmap](https://ziglang.org/documentation/master/std/#std.os.linux.mmap) [munmap](https://ziglang.org/documentation/master/std/#std.os.linux.munmap) |
 | [open_errno.zig](src/open_errno.zig)       | [open](https://ziglang.org/documentation/master/std/#std.os.linux.open) |
 | [pipe.zig](src/pipe.zig)                   | [pipe](https://ziglang.org/documentation/master/std/#std.os.linux.pipe) [read](https://ziglang.org/documentation/master/std/#std.os.linux.read) [write](https://ziglang.org/documentation/master/std/#std.os.linux.write) |
 | [symlink.zig](src/symlink.zig)             | [symlink](https://ziglang.org/documentation/master/std/#std.os.linux.symlink) [readlink](https://ziglang.org/documentation/master/std/#std.os.linux.readlink) |
