@@ -20,6 +20,7 @@ linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentati
 | [mmap.zig](src/mmap.zig)                   | [mmap](https://ziglang.org/documentation/master/std/#std.os.linux.mmap) [munmap](https://ziglang.org/documentation/master/std/#std.os.linux.munmap) |
 | [open_errno.zig](src/open_errno.zig)       | [open](https://ziglang.org/documentation/master/std/#std.os.linux.open) |
 | [pipe.zig](src/pipe.zig)                   | [pipe](https://ziglang.org/documentation/master/std/#std.os.linux.pipe) [read](https://ziglang.org/documentation/master/std/#std.os.linux.read) [write](https://ziglang.org/documentation/master/std/#std.os.linux.write) |
+| [ptrace.zig](src/ptrace.zig)               | [ptrace](https://ziglang.org/documentation/master/std/#std.os.linux.ptrace) |
 | [symlink.zig](src/symlink.zig)             | [symlink](https://ziglang.org/documentation/master/std/#std.os.linux.symlink) [readlink](https://ziglang.org/documentation/master/std/#std.os.linux.readlink) |
 | [ushare.zig](src/ushare.zig)               | [getuid](https://ziglang.org/documentation/master/std/#std.os.linux.getuid) [unshare](https://ziglang.org/documentation/master/std/#std.os.linux.unshare) |
 | [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/master/std/#std.os.linux.uname) |
