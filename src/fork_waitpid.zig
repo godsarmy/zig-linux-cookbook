@@ -9,6 +9,9 @@ pub fn main() !void {
         // we are the child
         const mypid = linux.getpid();
         try stdout.print("I am printed by child...pid={}\n", .{mypid});
+        // sleep 1 second
+        std.time.sleep(1_000_000_000);
+        try stdout.print("I am exiting...pid={}\n", .{mypid});
         std.process.exit(0);
     }
     var status: u32 = undefined;
