@@ -21,9 +21,6 @@ pub fn main() !void {
     const pid = linux.fork();
     if (pid == 0) {
         // we are the child
-        // child ptrace enabled
-        // const traceme_rc = linux.ptrace(linux.PTRACE.TRACEME, 0, 0, 0, 0);
-        // try stdout.print("ptrace traceme rc={}...\n", .{traceme_rc});
         const env = [_:null]?[*:0]u8{null};
         const arg_len = args.len - 1;
         var args_ptrs: [1024:null]?[*:0]const u8 = undefined;
