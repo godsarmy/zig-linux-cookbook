@@ -7,6 +7,7 @@ linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentati
 ## Examples
 | File                                       | Related Call |
 | ------------------------------------------ | ------------ |
+| [capget.zig](src/capget.zig)               | [capget](https://ziglang.org/documentation/master/std/#std.os.linux.capget) |
 | [clock_gettime.zig](src/clock_gettime.zig) | [clock_gettime](https://ziglang.org/documentation/master/std/#std.os.linux.clock_gettime) |
 | [dup2.zig](src/dup2.zig)                   | [dup2](https://ziglang.org/documentation/master/std/#std.os.linux.dup2) |
 | [execve.zig](src/execve.zig)               | [execve](https://ziglang.org/documentation/master/std/#std.os.linux.execve) |
