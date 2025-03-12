@@ -28,7 +28,7 @@ linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentati
 | [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/master/std/#std.os.linux.uname) |
 
 ## Usage
- * Install [zig >= 0.13](https://ziglang.org/download/)
+ * Install [zig >= 0.14](https://ziglang.org/download/)
 
  * Build Only.
 ```sh

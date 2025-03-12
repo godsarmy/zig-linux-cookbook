@@ -9,7 +9,7 @@ pub fn main() !void {
     const rc = linux.chdir(tmp);
     try stdout.print("chdir rc: {d}\n", .{rc});
 
-    var buf: [std.fs.MAX_PATH_BYTES]u8 = undefined;
+    var buf: [std.fs.max_path_bytes]u8 = undefined;
     // call getcwd as linux system call
     _ = linux.getcwd(&buf, buf.len);
     const ptr = mem.sliceTo(&buf, 0);

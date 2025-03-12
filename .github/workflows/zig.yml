@@ -16,7 +16,7 @@ jobs:
       - uses: mlugg/setup-zig@v1
         name: Set up zig
         with:
-          version: 0.13.0
+          version: 0.14.0
 
       - name: Build
         run: |

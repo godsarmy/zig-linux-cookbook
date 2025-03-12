@@ -13,7 +13,7 @@ pub fn main() !void {
     const end_rc = linux.clock_gettime(linux.CLOCK.MONOTONIC, &end_ts);
     try stdout.print("start rc: {}, end rc: {}\n", .{ start_rc, end_rc });
     // print time diff
-    const sec_diff = end_ts.tv_sec - start_ts.tv_sec;
-    const nano_diff = end_ts.tv_nsec - start_ts.tv_nsec;
+    const sec_diff = end_ts.sec - start_ts.sec;
+    const nano_diff = end_ts.nsec - start_ts.nsec;
     try stdout.print("elapsed time = {d} sec & {d} nanoseconds\n", .{ sec_diff, nano_diff });
 }
