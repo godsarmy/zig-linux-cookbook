@@ -17,6 +17,7 @@ linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentati
 | [getdents64](src/getdents64.zig)           | [getdents64](https://ziglang.org/documentation/master/std/#std.os.linux.getdents64) |
 | [getgroups.zig](src/getgroups.zig)         | [getgroups](https://ziglang.org/documentation/master/std/#std.os.linux.getgroups) |
 | [getrandom.zig](src/getrandom.zig)         | [getrandom](https://ziglang.org/documentation/master/std/#std.os.linux.getrandom) |
+| [ioctl.zig](src/ioctl.zig)                 | [ioctl](https://ziglang.org/documentation/master/std/#std.os.linux.ioctl) |
 | [kill.zig](src/kill.zig)                   | [kill](https://ziglang.org/documentation/master/std/#std.os.linux.kill) |
 | [lstat.zig](src/lstat.zig)                 | [lstat](https://ziglang.org/documentation/master/std/#std.os.linux.lstat) |
 | [mmap.zig](src/mmap.zig)                   | [mmap](https://ziglang.org/documentation/master/std/#std.os.linux.mmap) [munmap](https://ziglang.org/documentation/master/std/#std.os.linux.munmap) |
