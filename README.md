@@ -1,8 +1,15 @@
-# Zig Linux Cookbook
+# Zig Linux System Programming Cookbook
+
 
 ## Overview
-Examples of [zig](https://ziglang.org/) code to demonstrate how to use typical
-linux system lib by zig namespace [std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux)
+This repository is a collection of practical examples and recipes of
+[std.os.linux](https://ziglang.org/documentation/master/std/#std.os.linux) for
+developing applications and system tools using the [Zig](https://ziglang.org/)
+programming language on Linux.
+
+It's designed to be a helpful resource for Zig developers of all levels who
+want to learn by example and quickly find solutions to port code of C system
+calls into [Zig](https://ziglang.org/).
 
 ## Examples
 | File                                       | Related Call |
