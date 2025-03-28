@@ -54,3 +54,4 @@ zig build run-all
  * [awesome-zig](https://github.com/zigcc/awesome-zig)
  * [zig-learning](https://github.com/zouyee/zig-learning)
  * [zig-book](https://github.com/pedropark99/zig-book)
+ * [zig-guide](https://zig.guide/)
