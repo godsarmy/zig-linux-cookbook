@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 
 pub fn main() !void {
@@ -10,9 +10,9 @@ pub fn main() !void {
     const rc = linux.ioctl(stdout_fd, linux.T.IOCGWINSZ, @intFromPtr(&winsize));
     if (rc != 0) {
         const err = linux.E.init(rc);
-        try stdout.print("ioctl failed: {}\n", .{err});
+        print("ioctl failed: {}\n", .{err});
         return;
     }
 
-    try stdout.print("Window size: rows={}, cols={}\n", .{ winsize.row, winsize.col });
+    print("Window size: rows={}, cols={}\n", .{ winsize.row, winsize.col });
 }

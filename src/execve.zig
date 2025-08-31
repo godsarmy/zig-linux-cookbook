@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stderr = std.io.getStdErr().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 const allocator = std.heap.page_allocator;
 
@@ -21,6 +21,6 @@ pub fn main() !void {
 
     const rc = linux.execve(cmd, argv_buf.ptr, envp_buf.ptr);
     if (rc != 0) {
-        try stderr.print("execve failed: {d}\n", .{rc});
+        print("execve failed: {d}\n", .{rc});
     }
 }

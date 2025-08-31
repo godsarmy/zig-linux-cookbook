@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 const posix = std.posix;
 const process = std.process;
@@ -14,7 +14,7 @@ pub fn main() !void {
     defer process.argsFree(allocator, args);
 
     if (args.len < 2) {
-        try stdout.print("usage: {s} <command>\n", .{args[0]});
+        print("usage: {s} <command>\n", .{args[0]});
         return;
     }
 
@@ -29,13 +29,13 @@ pub fn main() !void {
         }
         args_ptrs[arg_len] = null;
         const err = posix.execvpeZ(args_ptrs[0].?, &args_ptrs, &env);
-        try stdout.print("error={}\n", .{err});
+        print("error={}\n", .{err});
         return;
     }
 
     const pid_i: i32 = @intCast(pid);
     const attach_rc = linux.ptrace(linux.PTRACE.ATTACH, pid_i, 0, 0, 0);
-    try stdout.print("ptrace attach rc={d}...\n", .{attach_rc});
+    print("ptrace attach rc={d}...\n", .{attach_rc});
 
     var status: u32 = undefined;
     while (true) {
@@ -43,7 +43,7 @@ pub fn main() !void {
         if (wait_rc == pid) {
             // if ptraced, waitpid WNOHANG returns pid at once with stop status
             if (linux.W.IFEXITED(status)) {
-                try stdout.print("child pid {} exited: {}\n", .{ pid, status });
+                print("child pid {} exited: {}\n", .{ pid, status });
                 break;
             }
         }

@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 
 pub fn main() !void {
@@ -9,5 +9,5 @@ pub fn main() !void {
     var gids: [1024]linux.gid_t = undefined;
     const rc = linux.getgroups(gids.len, &gids[0]);
 
-    try stdout.print("pid is {}, {} pids are {any}\n", .{ gid, rc, gids[0..rc] });
+    print("pid is {}, {} pids are {any}\n", .{ gid, rc, gids[0..rc] });
 }

@@ -21,11 +21,13 @@ fn addExes(b: *std.Build, run_all: *std.Build.Step) !void {
                 const name = std.mem.trimRight(u8, entry.name, ".zig");
                 const exe = b.addExecutable(.{
                     .name = name,
-                    .root_source_file = b.path(
-                        try fmt.allocPrint(b.allocator, "src/{s}.zig", .{name})
-                    ),
-                    .target = target,
-                    .optimize = optimize,
+                    .root_module = b.createModule(.{
+                        .root_source_file = b.path(
+                            try fmt.allocPrint(b.allocator, "src/{s}.zig", .{name})
+                        ),
+                        .target = target,
+                        .optimize = optimize,
+                    }),
                 });
                 b.installArtifact(exe);
 

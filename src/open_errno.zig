@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 
 pub fn main() !void {
@@ -8,12 +8,12 @@ pub fn main() !void {
     const err_rc = linux.open("no/such/file", linux.O{}, 0);
     // fetch err from error code, it is NOENT
     const err = linux.E.init(err_rc);
-    try stdout.print("Error is {}\n", .{err});
+    print("Error is {}\n", .{err});
 
     const open_rc = linux.open("/etc/passwd", linux.O{}, 0);
     const close_rc = linux.close(@intCast(open_rc));
-    try stdout.print("open/close rc is {}/{}\n", .{ open_rc, close_rc });
+    print("open/close rc is {}/{}\n", .{ open_rc, close_rc });
     // fetch err from error code, it is SUCCESS
     const err2 = linux.E.init(open_rc);
-    try stdout.print("Error is {}\n", .{err2});
+    print("Error is {}\n", .{err2});
 }

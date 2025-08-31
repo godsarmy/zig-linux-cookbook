@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 
 pub fn main() !void {
@@ -11,5 +11,5 @@ pub fn main() !void {
     var data: linux.cap_user_data_t = undefined;
     const rc = linux.capget(&hdr, &data);
 
-    try stdout.print("rc: {d}, hdr: {}, cap data: {}\n", .{ rc, hdr, data });
+    print("rc: {d}, hdr: {}, cap data: {}\n", .{ rc, hdr, data });
 }

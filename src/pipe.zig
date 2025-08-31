@@ -1,8 +1,7 @@
 const std = @import("std");
 
 const linux = std.os.linux;
-const stdout = std.io.getStdOut().writer();
-const stderr = std.io.getStdErr().writer();
+const print = std.debug.print;
 
 pub fn main() !void {
     // Show usage of pipe, read, write
@@ -10,7 +9,7 @@ pub fn main() !void {
     var pipefd: [2]linux.fd_t = undefined;
     const pipe_rc = linux.pipe(&pipefd);
     if (pipe_rc != 0) {
-        try stderr.print("pipe failed: {}\n", .{pipe_rc});
+        print("pipe failed: {}\n", .{pipe_rc});
         return;
     }
 
@@ -19,11 +18,11 @@ pub fn main() !void {
         // we are the child
         _ = linux.close(pipefd[1]);
         var buf: [1]u8 = undefined;
-        try stdout.print("read in child: ", .{});
+        print("read in child: ", .{});
         while (linux.read(pipefd[0], &buf, buf.len) > 0)
-            try stdout.print("{s}", .{buf});
+            print("{s}", .{buf});
 
-        try stdout.print("\n", .{});
+        print("\n", .{});
         _ = linux.close(pipefd[0]);
 
         std.process.exit(0);
@@ -35,5 +34,5 @@ pub fn main() !void {
     var status: u32 = undefined;
     _ = linux.waitpid(@intCast(pid), &status, 0);
 
-    try stdout.print("write rc in parent: {}\n", .{write_rc});
+    print("write rc in parent: {}\n", .{write_rc});
 }

@@ -1,16 +1,16 @@
 const std = @import("std");
 
-const stdout = std.io.getStdOut().writer();
+const print = std.debug.print;
 const linux = std.os.linux;
 
-fn childFn(arg: usize) callconv(.C) u8 {
+fn childFn(arg: usize) callconv(.c) u8 {
     _ = arg; // Unused argument in this simple example
 
     const tid = linux.gettid();
     // sleep 1 millisecond
-    std.time.sleep(1_000_000);
+    std.Thread.sleep(1_000_000);
     // For this simple example, we just print a message and exit.
-    stdout.print("Child process run as {}\n", .{tid}) catch return 0;
+    print("Child process run as {}\n", .{tid});
 
     return 0; // Exit code for the child process
 }
@@ -28,7 +28,7 @@ pub fn main() !void {
     // You can also add other flags like CLONE_FS, CLONE_FILES, CLONE_SIGHAND, etc.
     // based on what resources you want to share.
 
-    try stdout.print("Parent process starting clone...\n", .{});
+    print("Parent process starting clone...\n", .{});
 
     // Call std.os.linux.clone to create the new process/thread
     const pid_or_err = linux.clone(
@@ -41,16 +41,16 @@ pub fn main() !void {
         null, // Child TID pointer (not used here, can be null)
     );
 
-    try stdout.print("Clone call returned, child PID: {}\n", .{pid_or_err});
+    print("Clone call returned, child PID: {}\n", .{pid_or_err});
     if (pid_or_err <= 0) {
-        try stdout.print("child not created successfully\n", .{});
+        print("child not created successfully\n", .{});
         return;
     }
 
     // sleep 2 millisecond
-    std.time.sleep(2_000_000);
+    std.Thread.sleep(2_000_000);
     // Wait for the child process to exit
     var status: u32 = undefined;
     const rc = linux.waitpid(@intCast(pid_or_err), &status, 0);
-    try stdout.print("Child process exited {}, with status: {}\n", .{ rc, status });
+    print("Child process exited {}, with status: {}\n", .{ rc, status });
 }
