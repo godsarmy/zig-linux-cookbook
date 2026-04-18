@@ -8,7 +8,8 @@ fn childFn(arg: usize) callconv(.c) u8 {
 
     const tid = linux.gettid();
     // sleep 1 millisecond
-    std.Thread.sleep(1_000_000);
+    const req = linux.timespec{ .sec = 0, .nsec = 1_000_000 };
+    _ = linux.nanosleep(&req, null);
     // For this simple example, we just print a message and exit.
     print("Child process run as {}\n", .{tid});
 
@@ -48,7 +49,8 @@ pub fn main() !void {
     }
 
     // sleep 2 millisecond
-    std.Thread.sleep(2_000_000);
+    const parent_req = linux.timespec{ .sec = 0, .nsec = 2_000_000 };
+    _ = linux.nanosleep(&parent_req, null);
     // Wait for the child process to exit
     var status: u32 = undefined;
     const rc = linux.waitpid(@intCast(pid_or_err), &status, 0);

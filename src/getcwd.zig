@@ -5,6 +5,9 @@ const print = std.debug.print;
 const linux = std.os.linux;
 
 pub fn main() !void {
+    var threaded: std.Io.Threaded = .init_single_threaded;
+    const io = threaded.io();
+
     const tmp = "/tmp";
     const rc = linux.chdir(tmp);
     print("chdir rc: {d}\n", .{rc});
@@ -16,6 +19,6 @@ pub fn main() !void {
     print("CWD is {s}\n", .{ptr});
 
     // call getcwd in zig native func
-    const cwd = try std.process.getCwd(&buf);
-    print("CWD is {s}\n", .{cwd});
+    const cwd_n = try std.process.currentPath(io, &buf);
+    print("CWD is {s}\n", .{buf[0..cwd_n]});
 }

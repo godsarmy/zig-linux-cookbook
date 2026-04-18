@@ -1,6 +1,5 @@
 const std = @import("std");
 
-const fs = std.fs;
 const mem = std.mem;
 const print = std.debug.print;
 const linux = std.os.linux;
@@ -12,9 +11,10 @@ pub fn main() !void {
     var buf: [buf_size]u8 = undefined;
 
     const open_rc = linux.open(tmp_dir_path, linux.O{}, 0);
-    const err = linux.E.init(open_rc);
+    const err = linux.errno(open_rc);
     if (err != linux.E.SUCCESS) {
         print("Error is {}\n", .{err});
+        return;
     }
     defer _ = linux.close(@intCast(open_rc));
 
@@ -34,11 +34,14 @@ pub fn main() !void {
     }
 
     // read dir in zig native way, much easier
-    var tmp_dir = try fs.openDirAbsolute("/tmp", .{ .iterate = true });
-    defer tmp_dir.close();
+    var threaded: std.Io.Threaded = .init_single_threaded;
+    const io = threaded.io();
+
+    const tmp_dir = try std.Io.Dir.openDirAbsolute(io, "/tmp", .{ .iterate = true });
+    defer tmp_dir.close(io);
 
     var iterate = tmp_dir.iterate();
-    while (try iterate.next()) |entry| {
+    while (try iterate.next(io)) |entry| {
         print("{s} ({})\n", .{ entry.name, entry.kind });
     }
 }

@@ -8,8 +8,8 @@ pub fn main() !void {
     var winsize: std.posix.winsize = undefined;
 
     const rc = linux.ioctl(stdout_fd, linux.T.IOCGWINSZ, @intFromPtr(&winsize));
-    if (rc != 0) {
-        const err = linux.E.init(rc);
+    if (linux.errno(rc) != .SUCCESS) {
+        const err = linux.errno(rc);
         print("ioctl failed: {}\n", .{err});
         return;
     }

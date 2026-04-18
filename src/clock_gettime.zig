@@ -9,7 +9,8 @@ pub fn main() !void {
     // fetch timestamp in the beginning
     const start_rc = linux.clock_gettime(linux.CLOCK.MONOTONIC, &start_ts);
     // sleep 1 second
-    std.Thread.sleep(1000000000);
+    const req = linux.timespec{ .sec = 1, .nsec = 0 };
+    _ = linux.nanosleep(&req, null);
     const end_rc = linux.clock_gettime(linux.CLOCK.MONOTONIC, &end_ts);
     print("start rc: {}, end rc: {}\n", .{ start_rc, end_rc });
     // print time diff

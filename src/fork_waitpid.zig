@@ -10,7 +10,8 @@ pub fn main() !void {
         const mypid = linux.getpid();
         print("I am printed by child...pid={}\n", .{mypid});
         // sleep 1 second
-        std.Thread.sleep(1_000_000_000);
+        const req = linux.timespec{ .sec = 1, .nsec = 0 };
+        _ = linux.nanosleep(&req, null);
         print("I am exiting...pid={}\n", .{mypid});
         std.process.exit(0);
     }

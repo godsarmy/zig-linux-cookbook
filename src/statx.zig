@@ -1,15 +1,14 @@
 const std = @import("std");
 
-const debug = std.debug;
 const print = std.debug.print;
 const linux = std.os.linux;
 
-fn lstat_type(path: [:0]const u8) !void {
-    var statbuf: linux.Stat = undefined;
-    const rc = linux.lstat(path, &statbuf);
+fn statx_type(path: [:0]const u8) !void {
+    var statbuf: linux.Statx = undefined;
+    const rc = linux.statx(linux.AT.FDCWD, path, linux.AT.SYMLINK_NOFOLLOW, .{ .TYPE = true }, &statbuf);
 
-    if (rc != 0) {
-        print("Error to call lstat on {s}: {d}\n", .{ path, rc });
+    if (linux.errno(rc) != .SUCCESS) {
+        print("Error to call statx on {s}: {}\n", .{ path, linux.errno(rc) });
         return;
     }
 
@@ -33,10 +32,10 @@ fn lstat_type(path: [:0]const u8) !void {
 }
 
 pub fn main() !void {
-    try lstat_type("/etc");
-    try lstat_type("/etc/passwd");
-    try lstat_type("/dev/null");
-    try lstat_type("/dev/loop0");
-    try lstat_type("/dev/core");
-    try lstat_type("/no/such/file");
+    try statx_type("/etc");
+    try statx_type("/etc/passwd");
+    try statx_type("/dev/null");
+    try statx_type("/dev/loop0");
+    try statx_type("/dev/core");
+    try statx_type("/no/such/file");
 }

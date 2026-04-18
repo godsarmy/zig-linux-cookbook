@@ -15,7 +15,7 @@
     // This field is optional.
     // This is currently advisory only; Zig does not yet do anything
     // with this value.
-    .minimum_zig_version = "0.15.1",
+    .minimum_zig_version = "0.16.0",
 
     // This field is optional.
     // Each dependency must either provide a `url` and `hash`, or a `path`.
@@ -67,7 +67,7 @@
         "src",
         // For example...
         //"LICENSE",
-        //"README.md",
+        "README.md",
     },
     .fingerprint = 0x475ac770e043713e,
 }
