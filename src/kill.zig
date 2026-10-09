@@ -3,9 +3,8 @@ const std = @import("std");
 const print = std.debug.print;
 const linux = std.os.linux;
 
-pub fn main() !void {
-    var threaded: std.Io.Threaded = .init_single_threaded;
-    const io = threaded.io();
+pub fn main(init: std.process.Init) !void {
+    const io = init.io;
 
     // standard zig native way to create subprocess
     const argv = [_][]const u8{ "sleep", "5" };
