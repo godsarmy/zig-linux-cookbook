@@ -1,7 +1,6 @@
 const std = @import("std");
 
 const mem = std.mem;
-const meta = std.meta;
 const linux = std.os.linux;
 const print = std.debug.print;
 
@@ -15,7 +14,7 @@ pub fn main() !void {
     print("uts[{}] printed in raw mode {}\n", .{ @TypeOf(uts), uts });
 
     // iterate over fields of struct
-    inline for (meta.fields(@TypeOf(uts))) |f| {
-        print("{s}: {s}\n", .{ f.name, @as(f.type, @field(uts, f.name)) });
+    inline for (@typeInfo(@TypeOf(uts)).@"struct".field_names) |name| {
+        print("{s}: {s}\n", .{ name, @field(uts, name) });
     }
 }

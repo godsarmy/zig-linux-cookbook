@@ -7,9 +7,6 @@ fn childFn(arg: usize) callconv(.c) u8 {
     _ = arg; // Unused argument in this simple example
 
     const tid = linux.gettid();
-    // sleep 1 millisecond
-    const req = linux.timespec{ .sec = 0, .nsec = 1_000_000 };
-    _ = linux.nanosleep(&req, null);
     // For this simple example, we just print a message and exit.
     print("Child process run as {}\n", .{tid});
 
@@ -25,9 +22,10 @@ pub fn main() !void {
     defer std.heap.page_allocator.free(stack_memory);
 
     const stack_ptr = @intFromPtr(stack_memory.ptr + stack_size);
-    const clone_flags = linux.CLONE.VM | linux.CLONE.THREAD | linux.CLONE.SIGHAND | linux.CLONE.FILES | linux.CLONE.FS;
-    // You can also add other flags like CLONE_FS, CLONE_FILES, CLONE_SIGHAND, etc.
-    // based on what resources you want to share.
+    const clone_flags = linux.CLONE.VM | linux.CLONE.THREAD | linux.CLONE.SIGHAND |
+        linux.CLONE.FILES | linux.CLONE.FS | linux.CLONE.PARENT_SETTID | linux.CLONE.CHILD_CLEARTID;
+    // The kernel stores the TID before clone returns, then clears it on thread exit.
+    var child_tid: linux.pid_t align(4) = 0;
 
     print("Parent process starting clone...\n", .{});
 
@@ -37,22 +35,34 @@ pub fn main() !void {
         stack_ptr, // Stack pointer for the child
         clone_flags, // Clone flags
         0, // Argument passed to childFn (anyopaque)
-        null, // Parent TID pointer (not used here, can be null)
+        &child_tid, // Store the child's TID in shared memory
         0, // New TLS value (0 for default)
-        null, // Child TID pointer (not used here, can be null)
+        &child_tid, // Clear the TID and wake futex waiters on exit
     );
 
-    print("Clone call returned, child PID: {}\n", .{pid_or_err});
-    if (pid_or_err <= 0) {
-        print("child not created successfully\n", .{});
-        return;
+    const clone_errno = linux.errno(pid_or_err);
+    if (clone_errno != .SUCCESS) {
+        print("clone failed: {s}\n", .{@tagName(clone_errno)});
+        return error.CloneFailed;
     }
+    print("Clone call returned, child TID: {}\n", .{pid_or_err});
 
-    // sleep 2 millisecond
-    const parent_req = linux.timespec{ .sec = 0, .nsec = 2_000_000 };
-    _ = linux.nanosleep(&parent_req, null);
-    // Wait for the child process to exit
-    var status: u32 = undefined;
-    const rc = linux.waitpid(@intCast(pid_or_err), &status, 0);
-    print("Child process exited {}, with status: {}\n", .{ rc, status });
+    // CLONE.THREAD threads cannot be joined with waitpid. Wait for the kernel
+    // to clear the TID before freeing the child's stack.
+    while (true) {
+        const tid = @atomicLoad(linux.pid_t, &child_tid, .acquire);
+        if (tid == 0) break;
+
+        // The kernel's exit wake uses a shared futex, so private must be false.
+        const rc = linux.futex_4arg(&child_tid, .{ .cmd = .WAIT, .private = false }, @bitCast(tid), null);
+        switch (linux.errno(rc)) {
+            .SUCCESS, .INTR, .AGAIN => continue,
+            else => |err| {
+                print("futex wait failed: {s}\n", .{@tagName(err)});
+                // Terminate all threads without freeing a potentially active stack.
+                std.process.exit(1);
+            },
+        }
+    }
+    print("Child thread {} exited\n", .{pid_or_err});
 }

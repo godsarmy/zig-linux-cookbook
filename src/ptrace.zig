@@ -37,12 +37,12 @@ pub fn main(init: std.process.Init) !void {
     const attach_rc = linux.ptrace(linux.PTRACE.ATTACH, pid_i, 0, 0, 0);
     print("ptrace attach rc={d}...\n", .{attach_rc});
 
-    var status: u32 = undefined;
+    var status: i32 = undefined;
     while (true) {
         const wait_rc = linux.waitpid(pid_i, &status, linux.W.NOHANG);
         if (wait_rc == pid) {
             // if ptraced, waitpid WNOHANG returns pid at once with stop status
-            if (linux.W.IFEXITED(status)) {
+            if (linux.W.IFEXITED(@bitCast(status))) {
                 print("child pid {} exited: {}\n", .{ pid, status });
                 break;
             }

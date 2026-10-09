@@ -34,9 +34,7 @@ fn addExes(b: *std.Build, run_all: *std.Build.Step) !void {
 
                 check.dependOn(&exe.step);
                 const run_cmd = b.addRunArtifact(exe);
-                if (b.args) |args| {
-                    run_cmd.addArgs(args);
-                }
+                run_cmd.addPassthruArgs();
 
                 const run_step = &run_cmd.step;
                 b.step(try fmt.allocPrint(b.allocator, "run-{s}", .{name}), try fmt.allocPrint(b.allocator, "Run example {s}", .{name})).dependOn(run_step);

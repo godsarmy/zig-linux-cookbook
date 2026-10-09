@@ -31,7 +31,7 @@ pub fn main() !void {
     const write_rc = linux.write(pipefd[1], "hello world", 11);
     _ = linux.close(pipefd[1]);
 
-    var status: u32 = undefined;
+    var status: i32 = undefined;
     _ = linux.waitpid(@intCast(pid), &status, 0);
 
     print("write rc in parent: {}\n", .{write_rc});

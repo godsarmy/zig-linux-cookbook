@@ -14,10 +14,10 @@ pub fn main() !void {
     const envp = [_][]const u8{"TERM=xterm"};
 
     const argv_buf = try arena.allocSentinel(?[*:0]const u8, argv.len, null);
-    for (argv, 0..) |arg, i| argv_buf[i] = (try arena.dupeZ(u8, arg)).ptr;
+    for (argv, 0..) |arg, i| argv_buf[i] = (try arena.dupeSentinel(u8, arg, 0)).ptr;
 
     const envp_buf = try arena.allocSentinel(?[*:0]const u8, envp.len, null);
-    for (envp, 0..) |env, i| envp_buf[i] = (try arena.dupeZ(u8, env)).ptr;
+    for (envp, 0..) |env, i| envp_buf[i] = (try arena.dupeSentinel(u8, env, 0)).ptr;
 
     const rc = linux.execve(cmd, argv_buf.ptr, envp_buf.ptr);
     if (rc != 0) {
