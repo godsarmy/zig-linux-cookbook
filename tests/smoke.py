@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = {
+    'unix_socket': 'Unix socket received: hello over a Unix domain socket\n',
     'timerfd': 'Timer finished\n',
     'redirect_exec': 'captured child output\n',
     'inotify': 'inotify: created watched.txt',

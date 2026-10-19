@@ -41,6 +41,7 @@ calls into [Zig](https://ziglang.org/).
 | [inotify.zig](src/inotify.zig) | inotify_init1, inotify_add_watch, read |
 | [redirect_exec.zig](src/redirect_exec.zig) | pipe2, fork, dup2, execve, read, waitpid |
 | [timerfd.zig](src/timerfd.zig) | timerfd_create, timerfd_settime, read |
+| [unix_socket.zig](src/unix_socket.zig) | socketpair, read, write, close |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -90,6 +91,7 @@ python3 tests/smoke.py
 
 * `timerfd`: Read periodic monotonic timer expirations until at least three ticks have elapsed.
 
+* `unix_socket`: Send one message through a Unix datagram socket pair in a single process.
 
 ## Other awesome zig learning materials
  * [zig-cookbook](https://github.com/zigcc/zig-cookbook)
