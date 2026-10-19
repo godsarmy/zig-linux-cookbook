@@ -36,6 +36,7 @@ calls into [Zig](https://ziglang.org/).
 | [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.uname) |
 | [file_copy.zig](src/file_copy.zig) | openat, read, write, lseek, close |
 | [tcp_echo.zig](src/tcp_echo.zig) | socket, bind, listen, getsockname, connect, accept4, read, write |
+| [poll.zig](src/poll.zig) | pipe2, poll, read, write, close |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -75,6 +76,7 @@ python3 tests/smoke.py
 
 * `tcp_echo`: Exchange a message between a blocking loopback TCP client and server on an ephemeral port.
 
+* `poll`: Wait for a pipe to become readable, then read its data.
 
 
 
