@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = {
+    'epoll': 'epoll: pipe is readable: x',
     'poll': 'poll: pipe is readable: x',
     'tcp_echo': ': hello over TCP',
     'file_copy': 'Copied 36 bytes',
