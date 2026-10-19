@@ -38,6 +38,7 @@ calls into [Zig](https://ziglang.org/).
 | [tcp_echo.zig](src/tcp_echo.zig) | socket, bind, listen, getsockname, connect, accept4, read, write |
 | [poll.zig](src/poll.zig) | pipe2, poll, read, write, close |
 | [epoll.zig](src/epoll.zig) | epoll_create1, epoll_ctl, epoll_wait, pipe2 |
+| [inotify.zig](src/inotify.zig) | inotify_init1, inotify_add_watch, read |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -81,6 +82,7 @@ python3 tests/smoke.py
 
 * `epoll`: Register one pipe with epoll and read it when an event arrives.
 
+* `inotify`: Watch a private temporary directory and print a file-creation event.
 
 
 
