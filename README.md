@@ -34,6 +34,7 @@ calls into [Zig](https://ziglang.org/).
 | [symlink.zig](src/symlink.zig)             | [symlink](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.symlink) [readlink](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.readlink) |
 | [unshare.zig](src/unshare.zig)             | [getuid](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.getuid) [unshare](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.unshare) |
 | [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.uname) |
+| [file_copy.zig](src/file_copy.zig) | openat, read, write, lseek, close |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -48,6 +49,35 @@ You will have binaries in `zig-out/bin`.
 ```sh
 zig build run-all
 ```
+
+## Running individual examples
+
+Run a single recipe with `zig build run-<name>`, for example:
+
+```sh
+zig build run-file_copy
+```
+
+The practical recipes print their results and exit automatically. They use
+private temporary files or local sockets and require no root privileges.
+`zig build check` compiles all recipes without running them.
+
+Run the practical recipes with external timeouts and output checks:
+
+```sh
+python3 tests/smoke.py
+```
+
+## Practical recipes
+
+* `file_copy`: Copy a file in chunks, handling EOF and short writes.
+
+
+
+
+
+
+
 
 ## Other awesome zig learning materials
  * [zig-cookbook](https://github.com/zigcc/zig-cookbook)

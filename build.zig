@@ -6,6 +6,8 @@ const fmt = std.fmt;
 // declaratively construct a build graph that will be executed by an external
 // runner.
 fn addExes(b: *std.Build, run_all: *std.Build.Step) !void {
+    b.dependOnDirectoryContents(b.path("src"));
+
     var threaded: std.Io.Threaded = .init_single_threaded;
     const io = threaded.io();
 
