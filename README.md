@@ -39,6 +39,7 @@ calls into [Zig](https://ziglang.org/).
 | [poll.zig](src/poll.zig) | pipe2, poll, read, write, close |
 | [epoll.zig](src/epoll.zig) | epoll_create1, epoll_ctl, epoll_wait, pipe2 |
 | [inotify.zig](src/inotify.zig) | inotify_init1, inotify_add_watch, read |
+| [redirect_exec.zig](src/redirect_exec.zig) | pipe2, fork, dup2, execve, read, waitpid |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -84,6 +85,7 @@ python3 tests/smoke.py
 
 * `inotify`: Watch a private temporary directory and print a file-creation event.
 
+* `redirect_exec`: Redirect a child command’s stdout into a pipe, print it, and wait for the child.
 
 
 
