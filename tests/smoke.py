@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = {
+    'tcp_echo': ': hello over TCP',
     'file_copy': 'Copied 36 bytes',
 }
 

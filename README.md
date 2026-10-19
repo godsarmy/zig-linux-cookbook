@@ -35,6 +35,7 @@ calls into [Zig](https://ziglang.org/).
 | [unshare.zig](src/unshare.zig)             | [getuid](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.getuid) [unshare](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.unshare) |
 | [uname.zig](src/uname.zig)                 | [uname](https://ziglang.org/documentation/0.17.0/std/#std.os.linux.uname) |
 | [file_copy.zig](src/file_copy.zig) | openat, read, write, lseek, close |
+| [tcp_echo.zig](src/tcp_echo.zig) | socket, bind, listen, getsockname, connect, accept4, read, write |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -72,6 +73,7 @@ python3 tests/smoke.py
 
 * `file_copy`: Copy a file in chunks, handling EOF and short writes.
 
+* `tcp_echo`: Exchange a message between a blocking loopback TCP client and server on an ephemeral port.
 
 
 
