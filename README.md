@@ -40,6 +40,7 @@ calls into [Zig](https://ziglang.org/).
 | [epoll.zig](src/epoll.zig) | epoll_create1, epoll_ctl, epoll_wait, pipe2 |
 | [inotify.zig](src/inotify.zig) | inotify_init1, inotify_add_watch, read |
 | [redirect_exec.zig](src/redirect_exec.zig) | pipe2, fork, dup2, execve, read, waitpid |
+| [timerfd.zig](src/timerfd.zig) | timerfd_create, timerfd_settime, read |
 
 ## Usage
  * Install [zig >= 0.17.0](https://ziglang.org/download/)
@@ -87,6 +88,7 @@ python3 tests/smoke.py
 
 * `redirect_exec`: Redirect a child command’s stdout into a pipe, print it, and wait for the child.
 
+* `timerfd`: Read periodic monotonic timer expirations until at least three ticks have elapsed.
 
 
 ## Other awesome zig learning materials

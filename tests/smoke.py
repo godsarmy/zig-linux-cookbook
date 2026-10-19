@@ -4,6 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = {
+    'timerfd': 'Timer finished\n',
     'redirect_exec': 'captured child output\n',
     'inotify': 'inotify: created watched.txt',
     'epoll': 'epoll: pipe is readable: x',
